@@ -225,6 +225,7 @@ export class AgentRuntime implements IAgentRuntime {
         cacheManager: ICacheManager;
         logging?: boolean;
     }) {
+        console.log(JSON.stringify(opts));
         elizaLogger.info("Initializing AgentRuntime with options:", {
             character: opts.character?.name,
             modelProvider: opts.modelProvider,

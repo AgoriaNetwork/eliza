@@ -47,9 +47,7 @@ export class TwitterSearchClient extends ClientBase {
 
     constructor(runtime: IAgentRuntime) {
         // Initialize the client and pass an optional callback to be called when the client is ready
-        super({
-            runtime,
-        });
+        super(runtime);
     }
 
     async onReady() {
@@ -60,22 +58,26 @@ export class TwitterSearchClient extends ClientBase {
         this.engageWithSearchTerms();
         setTimeout(
             () => this.engageWithSearchTermsLoop(),
-            (Math.floor(Math.random() * (120 - 60 + 1)) + 60) * 60 * 1000
+            (Math.floor(Math.random() * (10 - 1 + 1)) + 1) * 60 * 1000
         );
     }
 
     private async engageWithSearchTerms() {
         console.log("Engaging with search terms");
         try {
-            const searchTerm = [...this.runtime.character.topics][
-                Math.floor(Math.random() * this.runtime.character.topics.length)
+            const res = await fetch("https://api.chatscreener.com/tokens/top");
+            const topTokens = await res.json();
+            if (!topTokens || topTokens.length === 0) return;
+
+            const searchTerm = [...topTokens][
+                Math.floor(Math.random() * topTokens.length)
             ];
 
             console.log("Fetching search tweets");
             // TODO: we wait 5 seconds here to avoid getting rate limited on startup, but we should queue
             await new Promise((resolve) => setTimeout(resolve, 5000));
             const recentTweets = await this.fetchSearchTweets(
-                searchTerm,
+                "$" + searchTerm.token.symbol,
                 20,
                 SearchMode.Top
             );
@@ -108,7 +110,7 @@ export class TwitterSearchClient extends ClientBase {
 
             const prompt = `
   Here are some tweets related to the search term "${searchTerm}":
-  
+
   ${[...slicedTweets, ...homeTimeline]
       .filter((tweet) => {
           // ignore tweets where any of the thread tweets contain a tweet by the bot
@@ -126,7 +128,7 @@ export class TwitterSearchClient extends ClientBase {
   `
       )
       .join("\n")}
-  
+
   Which tweet is the most interesting and relevant for Ruby to reply to? Please provide only the ID of the tweet in your response.
   Notes:
     - Respond to English tweets only
@@ -241,7 +243,7 @@ export class TwitterSearchClient extends ClientBase {
                 twitterUserName: this.runtime.getSetting("TWITTER_USERNAME"),
                 timeline: formattedHomeTimeline,
                 tweetContext: `${tweetBackground}
-  
+
   Original Post:
   By @${selectedTweet.username}
   ${selectedTweet.text}${replyContext.length > 0 && `\nReplies to original post:\n${replyContext}`}

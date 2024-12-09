@@ -161,7 +161,7 @@ export class TokenProvider {
     async fetchTokenCodex(): Promise<TokenCodex> {
         try {
             const cacheKey = `token_${this.tokenAddress}`;
-            const cachedData = this.getCachedData<TokenCodex>(cacheKey);
+            const cachedData = await this.getCachedData<TokenCodex>(cacheKey);
             if (cachedData) {
                 console.log(
                     `Returning cached token data for ${this.tokenAddress}.`
@@ -242,7 +242,7 @@ export class TokenProvider {
     async fetchPrices(): Promise<Prices> {
         try {
             const cacheKey = "prices";
-            const cachedData = this.getCachedData<Prices>(cacheKey);
+            const cachedData = await this.getCachedData<Prices>(cacheKey);
             if (cachedData) {
                 console.log("Returning cached prices.");
                 return cachedData;
@@ -288,6 +288,7 @@ export class TokenProvider {
     async calculateBuyAmounts(): Promise<CalculatedBuyAmounts> {
         const dexScreenerData = await this.fetchDexScreenerData();
         const prices = await this.fetchPrices();
+        console.log("prices", prices);
         const solPrice = toBN(prices.solana.usd);
 
         if (!dexScreenerData || dexScreenerData.pairs.length === 0) {
@@ -339,7 +340,8 @@ export class TokenProvider {
 
     async fetchTokenSecurity(): Promise<TokenSecurityData> {
         const cacheKey = `tokenSecurity_${this.tokenAddress}`;
-        const cachedData = this.getCachedData<TokenSecurityData>(cacheKey);
+        const cachedData =
+            await this.getCachedData<TokenSecurityData>(cacheKey);
         if (cachedData) {
             console.log(
                 `Returning cached token security data for ${this.tokenAddress}.`
@@ -347,6 +349,8 @@ export class TokenProvider {
             return cachedData;
         }
         const url = `${PROVIDER_CONFIG.BIRDEYE_API}${PROVIDER_CONFIG.TOKEN_SECURITY_ENDPOINT}${this.tokenAddress}`;
+        console.log(`Fetching token security data for ${this.tokenAddress}`);
+        console.log({ url });
         const data = await this.fetchWithRetry(url);
 
         if (!data?.success || !data?.data) {
@@ -369,7 +373,7 @@ export class TokenProvider {
 
     async fetchTokenTradeData(): Promise<TokenTradeData> {
         const cacheKey = `tokenTradeData_${this.tokenAddress}`;
-        const cachedData = this.getCachedData<TokenTradeData>(cacheKey);
+        const cachedData = await this.getCachedData<TokenTradeData>(cacheKey);
         if (cachedData) {
             console.log(
                 `Returning cached token trade data for ${this.tokenAddress}.`
@@ -604,7 +608,7 @@ export class TokenProvider {
 
     async fetchDexScreenerData(): Promise<DexScreenerData> {
         const cacheKey = `dexScreenerData_${this.tokenAddress}`;
-        const cachedData = this.getCachedData<DexScreenerData>(cacheKey);
+        const cachedData = await this.getCachedData<DexScreenerData>(cacheKey);
         if (cachedData) {
             console.log("Returning cached DexScreener data.");
             return cachedData;
@@ -745,7 +749,7 @@ export class TokenProvider {
 
     async fetchHolderList(): Promise<HolderData[]> {
         const cacheKey = `holderList_${this.tokenAddress}`;
-        const cachedData = this.getCachedData<HolderData[]>(cacheKey);
+        const cachedData = await this.getCachedData<HolderData[]>(cacheKey);
         if (cachedData) {
             console.log("Returning cached holder list.");
             return cachedData;

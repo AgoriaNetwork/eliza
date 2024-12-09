@@ -359,7 +359,7 @@ export class TrustScoreManager {
             await this.tokenProvider.getProcessedTokenData();
         const wallet = new WalletProvider(
             this.connection,
-            new PublicKey(Wallet!)
+            new PublicKey("5DemWdrETGEDoZmvUyMHAQFRYAcZ6ynawXtncEmV2oRb")
         );
 
         let tokensBalance = 0;

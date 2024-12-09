@@ -153,6 +153,7 @@ export class ClientBase extends EventEmitter {
     }
 
     async init() {
+        console.log("INITIALIZING TWITTER");
         //test
         const username = this.runtime.getSetting("TWITTER_USERNAME");
 
@@ -220,6 +221,7 @@ export class ClientBase extends EventEmitter {
 
     async fetchHomeTimeline(count: number): Promise<Tweet[]> {
         elizaLogger.debug("fetching home timeline");
+        console.log(this.profile);
         const homeTimeline = await this.twitterClient.getUserTweets(
             this.profile.id,
             count
@@ -658,7 +660,10 @@ export class ClientBase extends EventEmitter {
     async fetchProfile(username: string): Promise<TwitterProfile> {
         const cached = await this.getCachedProfile(username);
 
-        if (cached) return cached;
+        if (cached) {
+            console.log("Returning cached profile", cached);
+            return cached;
+        }
 
         try {
             const profile = await this.requestQueue.add(async () => {
@@ -679,6 +684,8 @@ export class ClientBase extends EventEmitter {
                         this.runtime.character.twitterProfile?.nicknames || [],
                 } satisfies TwitterProfile;
             });
+
+            console.log("Caching profile", profile);
 
             this.cacheProfile(profile);
 

@@ -58,13 +58,16 @@ Your response must include the JSON block.`;
  * @returns An array parsed from the JSON string if successful; otherwise, null.
  */
 export function parseJsonArrayFromText(text: string) {
+    console.log("text", text);
     let jsonData = null;
 
     const jsonBlockMatch = text.match(jsonBlockPattern);
+    console.log("jsonBlockMatch", jsonBlockMatch);
 
     if (jsonBlockMatch) {
         try {
             jsonData = JSON.parse(jsonBlockMatch[1]);
+            console.log("jsonData", jsonData);
         } catch (e) {
             console.error("Error parsing JSON:", e);
             return null;
@@ -72,6 +75,7 @@ export function parseJsonArrayFromText(text: string) {
     } else {
         const arrayPattern = /\[\s*{[\s\S]*?}\s*\]/;
         const arrayMatch = text.match(arrayPattern);
+        console.log("arrayMatch", arrayMatch);
 
         if (arrayMatch) {
             try {
