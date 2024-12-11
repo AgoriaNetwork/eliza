@@ -17,6 +17,8 @@ export class CryptoNewsDataFeed implements IDataFeed {
     url =
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&locale=en";
 
+    availableFeeds: string[] = ["defautl"];
+
     formatPrice(price: number): string {
         return new Intl.NumberFormat("en-US", {
             style: "currency",
@@ -32,7 +34,7 @@ export class CryptoNewsDataFeed implements IDataFeed {
         }).format(marketCap);
     }
 
-    async fetchItems(): Promise<DataFeedItem[]> {
+    async fetchItems(_page = "default"): Promise<DataFeedItem[]> {
         try {
             const response = await fetch(this.url);
 
