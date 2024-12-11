@@ -10,10 +10,15 @@ import {
 } from "@ai16z/eliza";
 import { elizaLogger } from "@ai16z/eliza";
 import { ClientBase } from "./base.ts";
+import { CoindeskDataFeed } from "./data-feeds/coindesk-feed.ts";
 
 const twitterPostTemplate = `
 # Areas of Expertise
 {{knowledge}}
+
+# Data Feed
+
+{{dataFeed}}
 
 # About {{agentName}} (@{{twitterUserName}}):
 {{bio}}
@@ -135,6 +140,21 @@ export class TwitterPostClient {
             );
 
             const topics = this.runtime.character.topics.join(", ");
+
+            const newsFeed = new CoindeskDataFeed();
+            const dataFeed = await newsFeed.fetchItems(
+                newsFeed.availableFeeds[newsFeed.availableFeeds.length - 1]
+            );
+            for (let i = 0; i < dataFeed.length; i++) {
+                const details = await newsFeed.getItemDetails(newsFeed[i].id);
+                if (details) dataFeed[i] = details;
+            }
+
+            let formattedDataFeed = "";
+            for (const item of dataFeed) {
+                formattedDataFeed += `* ${item.url}\n${item.overviewContent}\n${item.content}\n\n`;
+            }
+
             const state = await this.runtime.composeState(
                 {
                     userId: this.runtime.agentId,
@@ -147,6 +167,7 @@ export class TwitterPostClient {
                 },
                 {
                     twitterUserName: this.client.profile.username,
+                    dataFeed: formattedDataFeed,
                 }
             );
 
