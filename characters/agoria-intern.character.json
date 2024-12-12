@@ -1,5 +1,5 @@
 {
-    "name": "agoria intern",
+    "name": "agoria_intern",
     "clients": ["twitter"],
     "modelProvider": "openai",
     "settings": {
@@ -38,7 +38,7 @@
                 }
             },
             {
-                "user": "SentientShrek",
+                "user": "agoria_intern",
                 "content": {
                     "text": "$EAI looks very strong, they announced NFT AI agents, which seems to have created a strong demand for the token. I would buy some if I were you"
                 }
