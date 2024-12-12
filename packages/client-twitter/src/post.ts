@@ -32,7 +32,7 @@ const twitterPostTemplate = `
 {{postDirections}}
 
 # Task: Generate a post in the voice and style and perspective of {{agentName}} @{{twitterUserName}}.
-Write a 1-3 sentence post that is {{adjective}} about {{topic}} (without mentioning {{topic}} directly), from the perspective of {{agentName}}. Do not add commentary or acknowledge this request, just write the post.
+Write a 1-3 sentence post that is {{adjective}} about any topic or news that you find relevant, from the perspective of {{agentName}}. Do not add commentary or acknowledge this request, just write the post.
 Your response should not contain any questions. Brief, concise statements only. The total character count MUST be less than 280. No emojis. Use \\n\\n (double spaces) between statements.`;
 
 const MAX_TWEET_LENGTH = 280;
@@ -141,19 +141,29 @@ export class TwitterPostClient {
 
             const topics = this.runtime.character.topics.join(", ");
 
+            console.log("Generating new tweet for topics:", topics);
+
             const newsFeed = new CoindeskDataFeed();
+
+            console.log("Fetching data feed:", newsFeed.name);
             const dataFeed = await newsFeed.fetchItems(
                 newsFeed.availableFeeds[newsFeed.availableFeeds.length - 1]
             );
+            console.log("Data feed:", dataFeed);
+            console.log("Data feed length:", dataFeed.length);
             for (let i = 0; i < dataFeed.length; i++) {
-                const details = await newsFeed.getItemDetails(newsFeed[i].id);
+                console.log("Fetching data feed details:", dataFeed[i].id);
+                const details = await newsFeed.getItemDetails(dataFeed[i].id);
                 if (details) dataFeed[i] = details;
             }
 
+            console.log("Data feed details:", dataFeed);
             let formattedDataFeed = "";
             for (const item of dataFeed) {
                 formattedDataFeed += `* ${item.url}\n${item.overviewContent}\n${item.content}\n\n`;
             }
+
+            console.log("Data feed:", formattedDataFeed);
 
             const state = await this.runtime.composeState(
                 {

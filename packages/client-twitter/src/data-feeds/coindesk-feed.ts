@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as cheerio from "cheerio";
 import { IDataFeed, DataFeedItem } from "./data-feed.interface";
 
@@ -21,21 +20,20 @@ export class CoindeskDataFeed implements IDataFeed {
 
     async fetchItems(page = this.availableFeeds[0]): Promise<DataFeedItem[]> {
         try {
-            const response = await axios.get(this.url + `/${page}`, {
+            const response = await fetch(this.url + `/${page}`, {
                 headers: this.headers,
             });
-            const $ = cheerio.load(response.data);
+            const html = await response.text();
+            const $ = cheerio.load(html);
             const articles: DataFeedItem[] = [];
 
             $(this.itemHtmlIdentifier).each((_, element) => {
                 const $element = $(element);
-                // Look for any heading element (h1-h6) as article titles might use different heading levels
                 const title = $element
                     .find("h1, h2, h3, h4, h5, h6")
                     .text()
                     .trim();
                 const link = $element.find("a").first().attr("href");
-                // Look for text content in paragraphs or divs that might contain the overview
                 const overviewContent =
                     title +
                     "\n\n" +
@@ -46,7 +44,7 @@ export class CoindeskDataFeed implements IDataFeed {
                         id: `https://coindesk.com${link}`,
                         createdAt: new Date(),
                         overviewContent,
-                        content: undefined, // Full content will be fetched separately
+                        content: undefined,
                     });
                 }
             });
@@ -60,18 +58,21 @@ export class CoindeskDataFeed implements IDataFeed {
 
     async getItemDetails(id: string): Promise<DataFeedItem | null> {
         try {
-            // Reconstruct the article URL from the ID
-            const response = await axios.get(id, {
+            console.log("Fetching article details for ID", id);
+            const response = await fetch(id, {
                 headers: this.headers,
             });
-            const $ = cheerio.load(response.data);
+            console.log("Fetching article details for ID", id);
+            const html = await response.text();
+            console.log("Fetched article details for ID", id);
+            const $ = cheerio.load(html);
+            console.log("Loaded article details for ID", id);
 
-            // Extract the main article content from .document-body
             const content = $(".document-body")
                 .find("p")
                 .map((_, el) => $(el).text().trim())
                 .get()
-                .filter((text) => text.length > 0) // Remove empty paragraphs
+                .filter((text) => text.length > 0)
                 .join("\n\n");
 
             const overviewContent =
@@ -99,29 +100,3 @@ export class CoindeskDataFeed implements IDataFeed {
         }
     }
 }
-
-// Testing function
-async function main() {
-    console.log("Fetching crypto markets...");
-    try {
-        const datafeed = new CoindeskDataFeed();
-
-        // Fetch latest articles
-        const articles = await datafeed.fetchItems("business");
-        console.log("Latest articles:", articles);
-
-        // Get details for a specific article
-        if (articles.length > 0) {
-            const details = await datafeed.getItemDetails(articles[0].id);
-            console.log("Article details:", details);
-        }
-    } catch (error) {
-        console.error(
-            "Main error:",
-            error instanceof Error ? error.message : String(error)
-        );
-        process.exit(1);
-    }
-}
-
-main();

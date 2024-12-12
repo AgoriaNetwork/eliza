@@ -83,28 +83,3 @@ export class CryptoNewsDataFeed implements IDataFeed {
         }
     }
 }
-
-// Testing function
-async function main() {
-    console.log("Fetching crypto markets...");
-    try {
-        const feed = new CryptoNewsDataFeed();
-        const items = await feed.fetchItems();
-
-        console.log("Fetched items:");
-        items.forEach((item) => {
-            console.log("\n-------------------");
-            console.log(item.overviewContent);
-            console.log(item.content);
-            console.log(`Updated: ${item.createdAt.toLocaleString()}`);
-        });
-    } catch (error) {
-        console.error(
-            "Main error:",
-            error instanceof Error ? error.message : String(error)
-        );
-        process.exit(1);
-    }
-}
-
-main();
