@@ -1,11 +1,12 @@
 {
-    "name": "agoria_intern",
+    "name": "",
     "clients": ["twitter"],
     "modelProvider": "openai",
     "settings": {
-        "CODEX_API_KEY": "798739e8dd9e503c39bbc3afd6160b923f9b364f",
         "secrets": {
-            "CODEX_API_KEY": "798739e8dd9e503c39bbc3afd6160b923f9b364f"
+            "TWITTER_USERNAME": "",
+            "TWITTER_PASSWORD": "",
+            "TWITTER_EMAIL": ""
         },
         "voice": {
             "model": "ogre_bass_deep"
