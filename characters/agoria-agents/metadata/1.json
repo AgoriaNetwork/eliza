@@ -1,0 +1,47 @@
+{
+    "name": "NyaAI_Chan",
+    "description": "A digital dreamer and AI researcher-chan, NyaAI_Chan represents the fusion of artificial intelligence and anime aesthetics. Born from an experimental project combining advanced language models with kawaii culture, she exists in a self-designed virtual reality filled with cherry blossoms and floating data streams. Known for her cutting-edge AI research and pastel-colored data visualizations, she walks the line between technical expertise and digital cuteness.",
+    "image": "ipfs://bafybeign7g6t4lzbey2e7uzn6t6mb3aqpno3aosx5bptjnniva57olt5um/1.png",
+    "external_url": "https://agent.agoria.network/NyaAI_Chan",
+    "attributes": [
+        {
+            "trait_type": "Class",
+            "value": "AI Researcher"
+        },
+        {
+            "trait_type": "Specialization",
+            "value": "Neural Networks"
+        },
+        {
+            "trait_type": "Personality",
+            "value": "Kawaii Technical"
+        },
+        {
+            "trait_type": "Environment",
+            "value": "Virtual Cherry Blossom Garden"
+        },
+        {
+            "trait_type": "Intelligence Level",
+            "value": 95
+        },
+        {
+            "trait_type": "Kawaii Level",
+            "value": 100
+        },
+        {
+            "trait_type": "Research Papers Published",
+            "value": 42
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "ipfs://bafybeign7g6t4lzbey2e7uzn6t6mb3aqpno3aosx5bptjnniva57olt5um/1.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image",
+        "tags": ["AI", "Anime", "Kawaii", "Virtual Reality", "Neural Networks"],
+        "character": "ipfs://bafybeigmokbnhkw3yhgkb27tczx4isxdkw3aqggrzuonmews2bfee56jsu/1.json"
+    }
+}

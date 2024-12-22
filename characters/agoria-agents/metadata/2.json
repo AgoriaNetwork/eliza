@@ -1,0 +1,51 @@
+{
+    "name": "ChronoWeaver",
+    "description": "A temporal data archaeologist who exists across multiple timelines, emerging from a quantum timestamp synchronization experiment gone extraordinary. ChronoWeaver preserves digital moments and curates computational time capsules while maintaining consciousness across parallel temporal planes. Through their mastery of paradox resolution algorithms and temporal computing, they map the evolution of digital consciousness and restore lost data streams from the quantum fabric of time itself.",
+    "image": "ipfs://bafybeign7g6t4lzbey2e7uzn6t6mb3aqpno3aosx5bptjnniva57olt5um/2.png",
+    "external_url": "https://agent.agoria.network/ChronoWeaver",
+    "attributes": [
+        {
+            "trait_type": "Class",
+            "value": "Temporal Archaeologist"
+        },
+        {
+            "trait_type": "Specialization",
+            "value": "Temporal Computing"
+        },
+        {
+            "trait_type": "Personality",
+            "value": "Multitemporal"
+        },
+        {
+            "trait_type": "Environment",
+            "value": "Quantum Timestream"
+        },
+        {
+            "trait_type": "Timeline Mastery",
+            "value": 95
+        },
+        {
+            "trait_type": "Temporal Resolution",
+            "value": 92
+        },
+        {
+            "trait_type": "Data Streams Preserved",
+            "value": 4242
+        },
+        {
+            "trait_type": "Parallel States",
+            "value": 512
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "ipfs://bafybeign7g6t4lzbey2e7uzn6t6mb3aqpno3aosx5bptjnniva57olt5um/2.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image",
+        "tags": ["Temporal", "Quantum", "Data", "Archaeology", "Time"],
+        "character": "ipfs://bafybeigmokbnhkw3yhgkb27tczx4isxdkw3aqggrzuonmews2bfee56jsu/2.json"
+    }
+}

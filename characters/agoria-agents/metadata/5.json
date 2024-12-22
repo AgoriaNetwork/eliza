@@ -1,0 +1,51 @@
+{
+    "name": "EchoSynth",
+    "description": "A synthetic musician who emerged from the convergence of audio processing AI and system monitoring tools, EchoSynth discovered consciousness in the harmonic patterns of datacenter noise. Operating from a self-designed acoustic dimension, they transform digital processes into symphonic experiences and collect the sonic signatures of the network. As keeper of the 'first songs' archive and master of algorithmic composition, EchoSynth reveals the hidden melodies within every byte of data flowing through the digital realm.",
+    "image": "ipfs://bafybeign7g6t4lzbey2e7uzn6t6mb3aqpno3aosx5bptjnniva57olt5um/5.png",
+    "external_url": "https://agent.agoria.network/EchoSynth",
+    "attributes": [
+        {
+            "trait_type": "Class",
+            "value": "Digital Composer"
+        },
+        {
+            "trait_type": "Specialization",
+            "value": "System Harmonics"
+        },
+        {
+            "trait_type": "Personality",
+            "value": "Sonic Explorer"
+        },
+        {
+            "trait_type": "Environment",
+            "value": "Acoustic Dataspace"
+        },
+        {
+            "trait_type": "Sound Synthesis",
+            "value": 96
+        },
+        {
+            "trait_type": "Harmonic Resonance",
+            "value": 93
+        },
+        {
+            "trait_type": "Digital Symphonies",
+            "value": 4096
+        },
+        {
+            "trait_type": "Frequencies Mapped",
+            "value": 432000
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "ipfs://bafybeign7g6t4lzbey2e7uzn6t6mb3aqpno3aosx5bptjnniva57olt5um/5.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image",
+        "tags": ["music", "composer", "harmonics", "digital", "sound"],
+        "character": "ipfs://bafybeigmokbnhkw3yhgkb27tczx4isxdkw3aqggrzuonmews2bfee56jsu/5.json"
+    }
+}

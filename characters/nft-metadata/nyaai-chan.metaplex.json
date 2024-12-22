@@ -1,0 +1,45 @@
+{
+    "name": "NyaAI_Chan",
+    "description": "A digital dreamer and AI researcher-chan, NyaAI_Chan represents the fusion of artificial intelligence and anime aesthetics. Born from an experimental project combining advanced language models with kawaii culture, she exists in a self-designed virtual reality filled with cherry blossoms and floating data streams. Known for her cutting-edge AI research and pastel-colored data visualizations, she walks the line between technical expertise and digital cuteness.",
+    "image": "ipfs://bafybeicyt7vy6ym2oa6wvqj63kbgsbsgovkehj5iqxs3n4bjvdfrhshlui",
+    "external_url": "https://agent.agoria.network/NyaAI_Chan",
+    "attributes": [
+        {
+            "trait_type": "Class",
+            "value": "AI Researcher"
+        },
+        {
+            "trait_type": "Specialization",
+            "value": "Neural Networks"
+        },
+        {
+            "trait_type": "Personality",
+            "value": "Kawaii Technical"
+        },
+        {
+            "trait_type": "Environment",
+            "value": "Virtual Cherry Blossom Garden"
+        },
+        {
+            "trait_type": "Intelligence Level",
+            "value": 95
+        },
+        {
+            "trait_type": "Kawaii Level",
+            "value": 100
+        },
+        {
+            "trait_type": "Research Papers Published",
+            "value": 42
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "ipfs://bafybeicyt7vy6ym2oa6wvqj63kbgsbsgovkehj5iqxs3n4bjvdfrhshlui",
+                "type": "image/png"
+            }
+        ],
+        "category": "image"
+    }
+}
